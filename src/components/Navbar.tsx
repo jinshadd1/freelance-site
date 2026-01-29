@@ -1,6 +1,9 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, LogIn, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { User, Session } from "@supabase/supabase-js";
+import { useNavigate } from "react-router-dom";
 
 const navLinks = [
   { name: "Services", href: "#services" },
@@ -12,6 +15,29 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+      }
+    );
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -42,6 +68,25 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            {user ? (
+              <Button 
+                variant="outline" 
+                onClick={handleSignOut} 
+                className="font-semibold rounded-xl"
+              >
+                <LogOut size={18} />
+                Sign Out
+              </Button>
+            ) : (
+              <Button 
+                variant="outline" 
+                onClick={() => navigate("/auth")} 
+                className="font-semibold rounded-xl"
+              >
+                <LogIn size={18} />
+                Sign In
+              </Button>
+            )}
             <Button onClick={scrollToContact} className="font-semibold rounded-xl">
               Get Free Strategy Call
             </Button>
@@ -72,6 +117,31 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            {user ? (
+              <Button 
+                variant="outline"
+                onClick={() => {
+                  handleSignOut();
+                  setIsOpen(false);
+                }} 
+                className="w-full font-semibold rounded-xl"
+              >
+                <LogOut size={18} />
+                Sign Out
+              </Button>
+            ) : (
+              <Button 
+                variant="outline"
+                onClick={() => {
+                  navigate("/auth");
+                  setIsOpen(false);
+                }} 
+                className="w-full font-semibold rounded-xl"
+              >
+                <LogIn size={18} />
+                Sign In
+              </Button>
+            )}
             <Button 
               onClick={() => {
                 scrollToContact();
