@@ -42,7 +42,7 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button onClick={scrollToContact} className="font-semibold">
+            <Button onClick={scrollToContact} className="font-semibold rounded-xl">
               Get Free Strategy Call
             </Button>
           </div>
@@ -77,7 +77,7 @@ const Navbar = () => {
                 scrollToContact();
                 setIsOpen(false);
               }} 
-              className="w-full font-semibold"
+              className="w-full font-semibold rounded-xl"
             >
               Get Free Strategy Call
             </Button>
