@@ -4,9 +4,6 @@ const tools = [
   "SEO",
   "Zapier",
   "CRM",
-  "Webflow",
-  "Framer",
-  "Notion",
   "Automation",
   "No-Code",
 ];
