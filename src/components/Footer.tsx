@@ -17,7 +17,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-secondary text-secondary-foreground py-16">
+    <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -25,7 +25,7 @@ const Footer = () => {
             <h3 className="font-heading font-bold text-xl mb-4">
               Muhammed Jinshad K
             </h3>
-            <p className="text-secondary-foreground/70 text-sm leading-relaxed">
+            <p className="text-background/70 text-sm leading-relaxed">
               Digital Marketing Expert helping businesses grow through strategic 
               marketing, automation, and no-code solutions.
             </p>
@@ -39,7 +39,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors text-sm"
+                    className="text-background/70 hover:text-background transition-colors text-sm"
                   >
                     {link.name}
                   </a>
@@ -56,7 +56,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    className="text-secondary-foreground/70 hover:text-secondary-foreground transition-colors text-sm"
+                    className="text-background/70 hover:text-background transition-colors text-sm"
                   >
                     {link.name}
                   </a>
@@ -68,12 +68,12 @@ const Footer = () => {
           {/* Social */}
           <div>
             <h4 className="font-heading font-semibold text-lg mb-4">Connect</h4>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a 
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                className="w-10 h-10 bg-background/10 rounded-xl flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-200"
               >
                 <Linkedin size={20} />
               </a>
@@ -81,7 +81,7 @@ const Footer = () => {
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary-foreground/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                className="w-10 h-10 bg-background/10 rounded-xl flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-200"
               >
                 <Instagram size={20} />
               </a>
@@ -90,8 +90,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 border-t border-secondary-foreground/10 text-center">
-          <p className="text-secondary-foreground/60 text-sm">
+        <div className="pt-8 border-t border-background/10 text-center">
+          <p className="text-background/60 text-sm">
             © {currentYear} Muhammed Jinshad K. All rights reserved.
           </p>
         </div>
